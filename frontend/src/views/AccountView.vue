@@ -1,5 +1,4 @@
 <style scoped>
-/* Tổng thể khung hiển thị tài khoản */
 .account-view {
     max-width: 550px;
     min-width: 340px;
@@ -14,13 +13,11 @@
     transition: all 0.3s ease-in-out;
 }
 
-/* Khi chỉnh sửa */
 .account-view.editing {
     border-color: #4B48D9;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Tiêu đề */
 h1 {
     font-size: 24pt;
     color: #6A5ACD;
@@ -30,7 +27,6 @@ h1 {
     text-transform: uppercase;
 }
 
-/* Nội dung thông tin */
 p {
     font-size: 16px;
     color: #222;
@@ -43,12 +39,10 @@ p {
     font-weight: 500;
 }
 
-/* Nhấn mạnh tiêu đề */
 p strong {
     color: #2E3192;
 }
 
-/* Nút bấm */
 button {
     background: linear-gradient(135deg, #5D5FEF, #4B48D9);
     color: white;
@@ -63,20 +57,17 @@ button {
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Hiệu ứng khi hover */
 button:hover {
     background: linear-gradient(135deg, #4B48D9, #3B38C9);
     transform: scale(1.08);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
 
-/* Hiệu ứng khi click */
 button:active {
     background: #2E3192;
     transform: scale(0.96);
 }
 
-/* Responsive */
 @media (max-width: 600px) {
     .account-view {
         width: 92%;

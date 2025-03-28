@@ -1,11 +1,9 @@
 <style scoped>
-/* Màu chủ đạo */
 :root {
   --primary-color: #b89e25;
   --hover-color: #e2bc13;
 }
 
-/* Container tổng thể */
 .container {
   background: linear-gradient(135deg, #f9f6ee, #fffbe6);
   padding: 50px 0;
@@ -16,7 +14,6 @@
   align-items: center;
 }
 
-/* Card */
 .card {
   background: white;
   border-radius: 12px;
@@ -31,7 +28,6 @@
   transform: scale(1.02);
 }
 
-/* Tiêu đề */
 h2 {
   color: var(--primary-color);
   font-size: 22px;
@@ -39,7 +35,6 @@ h2 {
   text-align: center;
 }
 
-/* Ô nhập liệu */
 .form-control {
   border: 2px solid #ddd;
   border-radius: 8px;
@@ -52,7 +47,6 @@ h2 {
   box-shadow: 0 0 5px rgba(184, 158, 37, 0.5);
 }
 
-/* Nút đăng ký */
 button {
   background-color: blue;
   color: white;
@@ -69,7 +63,6 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Liên kết đăng nhập */
 .text-muted {
   font-size: 14px;
   transition: color 0.2s ease-in-out;
@@ -79,7 +72,6 @@ button:hover {
   color: var(--primary-color);
 }
 
-/* Radio Group */
 .radio-group {
   display: flex;
   justify-content: center;

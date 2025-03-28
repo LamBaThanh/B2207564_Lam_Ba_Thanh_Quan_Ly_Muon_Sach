@@ -1,5 +1,4 @@
 <style scoped>
-/* Tổng thể của form */
 form {
   max-width: 500px;
   margin: 20px auto;
@@ -10,12 +9,10 @@ form {
   font-family: Arial, sans-serif;
 }
 
-/* Căn chỉnh khoảng cách giữa các nhóm input */
 .form-group {
   margin-bottom: 15px;
 }
 
-/* Kiểu dáng cho label */
 label {
   font-weight: bold;
   display: block;
@@ -23,7 +20,6 @@ label {
   color: #333;
 }
 
-/* Kiểu dáng cho input và select */
 input,
 select {
   width: 100%;
@@ -34,7 +30,6 @@ select {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* Hiệu ứng focus */
 input:focus,
 select:focus {
   border-color: #007bff;
@@ -42,7 +37,6 @@ select:focus {
   box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
 }
 
-/* Kiểu nút bấm */
 .btn {
   padding: 10px 15px;
   border-radius: 6px;
@@ -52,7 +46,6 @@ select:focus {
   font-weight: bold;
 }
 
-/* Nút Lưu */
 .btn-success {
   background-color: #28a745;
   border: none;
@@ -63,7 +56,6 @@ select:focus {
   background-color: #218838;
 }
 
-/* Nút Hủy */
 .btn-secondary {
   background-color: red;
   border: none;
@@ -74,12 +66,10 @@ select:focus {
   background-color: orange;
 }
 
-/* Khoảng cách giữa nút */
 .ml-2 {
   margin-left: 10px;
 }
 
-/* Responsive cho màn hình nhỏ */
 @media (max-width: 768px) {
   form {
     max-width: 90%;

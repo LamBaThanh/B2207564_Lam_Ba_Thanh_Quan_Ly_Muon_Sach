@@ -1,38 +1,34 @@
 <style scoped>
-/* Tổng thể container */
 .borrow-container {
     max-width: 650px;
     margin: 50px auto;
     padding: 25px;
     text-align: center;
-    background: linear-gradient(135deg, #e3f2fd, #ede7f6); /* Gradient xanh dương - tím nhạt */
+    background: linear-gradient(135deg, #e3f2fd, #ede7f6); 
     border-radius: 16px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
 }
 
-/* Tiêu đề chính */
 h2 {
     font-size: 26px;
-    color: #3949AB; /* Xanh tím đậm */
+    color: #3949AB;
     font-weight: bold;
     margin-bottom: 20px;
     text-transform: uppercase;
 }
 
-/* Form đăng ký mượn */
 .borrow-form {
     background: white;
     padding: 20px;
     border-radius: 14px;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
     text-align: left;
-    border-left: 6px solid #5C6BC0; /* Viền xanh đậm */
+    border-left: 6px solid #5C6BC0;
     position: relative;
     overflow: hidden;
 }
 
-/* Header form */
 .borrow-header {
     background: #5C6BC0;
     color: white;
@@ -47,7 +43,6 @@ h2 {
     right: 0;
 }
 
-/* Form nội dung */
 .borrow-content {
     margin-top: 50px;
     display: flex;
@@ -55,7 +50,6 @@ h2 {
     gap: 10px;
 }
 
-/* Nhãn (label) */
 label {
     font-weight: bold;
     font-size: 14px;
@@ -64,25 +58,21 @@ label {
     margin-bottom: 5px;
 }
 
-/* Cập nhật input & select */
 select, input {
-    width: 100%; /* Tăng chiều rộng */
-    padding: 14px; /* Tăng padding */
+    width: 100%; 
+    padding: 14px; 
     border: 2px solid #BDBDBD;
     border-radius: 8px;
-    font-size: 16px; /* Tăng kích thước chữ */
+    font-size: 16px; 
     transition: all 0.3s ease-in-out;
 }
 
-
-/* Khi focus vào input */
 select:focus, input:focus {
     border-color: #5C6BC0;
     outline: none;
     box-shadow: 0 0 8px rgba(92, 107, 192, 0.6);
 }
 
-/* Nút đăng ký */
 .btn-add {
     background-color: #5C6BC0;
     color: white;
@@ -99,7 +89,6 @@ select:focus, input:focus {
     transform: scale(1.05);
 }
 
-/* Responsive cho mobile */
 @media (max-width: 600px) {
     .borrow-container {
         width: 90%;

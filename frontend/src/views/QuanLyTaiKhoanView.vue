@@ -64,7 +64,6 @@ button:nth-child(3):hover {
   background: #e2bc13;
 }
 
-/* Responsive */
 @media (max-width: 480px) {
   .quanly-acc {
     padding: 20px;

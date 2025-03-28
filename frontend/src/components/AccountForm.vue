@@ -1,5 +1,4 @@
 <style scoped>
-/* Tổng thể của form */
 form {
     max-width: 450px;
     margin: 20px auto;
@@ -10,12 +9,10 @@ form {
     font-family: 'Arial', sans-serif;
 }
 
-/* Khoảng cách giữa các input */
 .form-group {
     margin-bottom: 15px;
 }
 
-/* Kiểu chữ và khoảng cách cho label */
 label {
     font-weight: bold;
     display: block;
@@ -23,7 +20,6 @@ label {
     color: #333;
 }
 
-/* Kiểu dáng input */
 input {
     width: 100%;
     padding: 10px;
@@ -33,14 +29,12 @@ input {
     transition: all 0.3s ease-in-out;
 }
 
-/* Hiệu ứng khi focus vào input */
 input:focus {
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
 }
 
-/* Kiểu nút bấm */
 .btn {
     padding: 10px 15px;
     border-radius: 6px;
@@ -53,7 +47,6 @@ input:focus {
     border: none;
 }
 
-/* Nút Lưu */
 .btn-success {
     background-color: #28a745;
     color: white;
@@ -63,7 +56,6 @@ input:focus {
     background-color: #218838;
 }
 
-/* Nút Hủy */
 .btn-secondary {
     background-color: #6c757d;
     color: white;
@@ -73,19 +65,16 @@ input:focus {
     background-color: #5a6268;
 }
 
-/* Hiệu ứng khi nhấn nút */
 .btn:active {
     transform: scale(0.95);
 }
 
-/* Nhóm nút */
 .button-group {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
 }
 
-/* Nhóm radio */
 .radio-group {
     display: flex;
     justify-content: center;
@@ -99,7 +88,6 @@ input:focus {
     gap: 5px;
 }
 
-/* Responsive cho mobile */
 @media (max-width: 768px) {
     form {
         max-width: 90%;
