@@ -1,13 +1,13 @@
 <style scoped>
 .input-group {
-  max-width: 400px; /* Giới hạn chiều rộng */
-  margin: 0 auto; /* Căn giữa */
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .form-control {
   border: 3px solid blue;
   border-right: none;
-  border-radius: 20px 0 0 20px; /* Bo tròn bên trái */
+  border-radius: 20px 0 0 20px;
   padding: 10px;
   font-size: 16px;
 }

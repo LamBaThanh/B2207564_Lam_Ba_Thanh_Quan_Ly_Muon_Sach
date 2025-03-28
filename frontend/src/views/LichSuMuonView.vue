@@ -62,7 +62,7 @@ export default {
   async mounted() {
     try {
       this.sachs = await fetchBooks();
-      await this.getLichSuMuon(); // Đảm bảo gọi API lịch sử sau khi có sách
+      await this.getLichSuMuon();
     } catch (error) {
       console.error("Lỗi khi tải dữ liệu:", error);
     }

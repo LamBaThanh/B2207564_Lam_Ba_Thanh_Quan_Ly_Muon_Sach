@@ -21,7 +21,6 @@ export const dangKyMuonSach = async (docGiaID, maSach, quantity, ngayMuon) => {
     ngayMuon,
     };
 
-  //console.log("Dữ liệu gửi lên API:", requestData);
   try {
     await axios.post("http://localhost:3000/api/theodoi/dangKyMuonSach", requestData);
   } catch (error) {

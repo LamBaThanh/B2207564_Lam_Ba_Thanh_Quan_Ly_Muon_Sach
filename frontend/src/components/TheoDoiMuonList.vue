@@ -235,10 +235,6 @@ export default {
       const sach = this.danhSachSach.find(s => s.maSach === maSach)
       return sach ? sach.tenSach : 'Không tìm thấy'
     },
-    // loadtenSach(tenSach) {
-    //   const sach = this.danhSachSach.find(s => s.tenSach === tenSach)
-    //   return sach ? sach.tenSach : 'Không tìm thấy'
-    // },
     formatDate(date) {
       return new Date(date).toLocaleDateString('vi-VN')
     },
