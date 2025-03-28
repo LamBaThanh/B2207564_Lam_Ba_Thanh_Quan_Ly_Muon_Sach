@@ -46,8 +46,6 @@
 <template>
   <div class="container text-center mt-5">
     <InputSearch v-model="search" />
-    <h2>Chào mừng bạn, hãy chọn sách yêu thích của mình!</h2>
-
     <div class="sach-list">
       <SachCard
         v-for="sach in paginatedBooks"
@@ -95,22 +93,21 @@
     },
     computed: {
       filteredBooks() {
-        return this.sachList.filter(book => {
-          const keyword = this.search.toLowerCase().trim()
-          const manxbValue = book.MANXB?._id || book.MANXB?.MANXB || ''
-
-          // Tìm NXB trong danh sách nxbs
-          const nxb = this.nxbs.find(n => String(n._id) === String(manxbValue))
-          const tenNXB = nxb ? nxb.TENNXB.toLowerCase() : ''
-          return (
-            book.TENSACH?.toLowerCase().includes(keyword) ||
-            book.MASACH?.toLowerCase().includes(keyword) ||
-            book.NGUONGOC_TACGIA?.toLowerCase().includes(keyword) ||
-            (String(book.NAMXUATBAN) || '').toLowerCase().includes(keyword) ||
+    return this.sachList.filter(book => {
+        const keyword = this.search.normalize("NFC").toLowerCase().trim();
+        const manxbValue = book.maNXB?._id || book.maNXB || '';
+        const nxb = this.nxbs.find(n => String(n.maNXB).trim() === String(manxbValue).trim());
+        const tenNXB = nxb ? nxb.tenNXB.normalize("NFC").toLowerCase() : '';
+        return (
+            book.tenSach?.normalize("NFC").toLowerCase().includes(keyword) ||
+            book.maSach?.toLowerCase().includes(keyword) ||
+            book.tacGia?.toLowerCase().includes(keyword) ||
+            (book.namXB?.toString() || '').toLowerCase().includes(keyword) ||
             tenNXB.includes(keyword)
-          )
-        })
-      },
+        );
+    });
+}
+,
 
       totalPages() {
         return Math.ceil(this.filteredBooks.length / this.pageSize)

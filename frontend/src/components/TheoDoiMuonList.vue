@@ -1,9 +1,13 @@
 <style scoped>
-  h2 {
-    text-align: center;
+  h1 {
+    font-size: 24pt;
+    color: #6A5ACD;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
-    color: #b89e25;
-  }
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
 
   .borrow-list {
     padding: 20px;
@@ -100,165 +104,9 @@
   }
 </style>
 
-<!-- <template>
-  <div class="borrow-list">
-    <h2>Theo dõi mượn sách</h2>
-
-    <InputSearch v-model="search" />
-
-    <div class="page-size mb-2">
-      <label for="pageSize">Hiển thị:</label>
-      <select v-model="perPage" id="pageSize">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
-      </select>
-      <span> phiếu / trang</span>
-    </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Người mượn</th>
-          <th>Tên sách</th>
-          <th>Số quyển</th>
-          <th>Ngày mượn</th>
-          <th>Ngày trả</th>
-          <th>Trạng thái</th>
-          <th>Thao tác</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="don in paginatedDonMuon" :key="don._id">
-          <td>{{ loadHoTen(don.maDG) }}</td>
-          <td>{{ loadSach(don.maSach) }}</td>
-          <td>{{ don.soQuyen }}</td>
-          <td>{{ formatDate(don.ngayMuon) }}</td>
-          <td>{{ formatNgay(don.ngayTra) }}</td>
-          <td>{{ don.trangThai }}</td>
-          <td>
-            <button
-              style="background: #4caf50; color: white"
-              v-if="don.trangThai === 'Chờ duyệt'"
-              @click="$emit('duyetMuon', don)"
-            >
-              Duyệt
-            </button>
-            <button
-              style="background: #f44336; color: white"
-              v-if="don.trangThai === 'Đang mượn'"
-              @click="$emit('xacNhanTra', don)"
-            >
-              Trả
-            </button>
-            <button
-              style="background: #ff9800; color: white"
-              @click="$emit('xoaDonMuon', don)"
-            >
-              Xóa
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="pagination mt-3">
-      <button @click="prevPage" :disabled="currentPage === 1">
-        <i class="bi bi-chevron-left"></i>
-        Trước
-      </button>
-      <span>Trang {{ currentPage }} / {{ totalPages }}</span>
-      <button @click="nextPage" :disabled="currentPage === totalPages">
-        Sau
-        <i class="bi bi-chevron-right"></i>
-      </button>
-    </div>
-  </div>
-</template>
-
-<script>
-  import InputSearch from '@/components/InputSearch.vue'
-
-  export default {
-    components: { InputSearch },
-    props: {
-      danhSachDonMuon: Array
-    },
-    data() {
-      return {
-        currentPage: 1,
-        perPage: 10,
-        search: ''
-      }
-    },
-    computed: {
-      filteredDonMuon() {
-        const keyword = this.search.toLowerCase().trim()
-        return this.danhSachDonMuon.filter(don => {
-          const tenSach = don.maSach?.tenSach?.toLowerCase() || ''
-          const hoTen = don.maDG
-            ? `${don.maDG.tenDG}`.toLowerCase()
-            : ''
-          const trangThai = don.trangThai?.toLowerCase() || ''
-
-          return (
-            tenSach.includes(keyword) ||
-            hoTen.includes(keyword) ||
-            trangThai.includes(keyword)
-          )
-        })
-      },
-      totalPages() {
-        return Math.ceil(this.filteredDonMuon.length / this.perPage)
-      },
-      paginatedDonMuon() {
-        const start = (this.currentPage - 1) * this.perPage
-        const end = start + this.perPage
-        return this.filteredDonMuon.slice(start, end)
-      }
-    },
-    methods: {
-      loadHoTen(docGia) {
-        console.log("docGia:", docGia)
-        if (!docGia || !docGia.tenDG) return 'Không tìm thấy'
-        return `${docGia.tenDG}`
-      },
-
-      loadSach(maSach) {
-        console.log("maSach:", maSach)
-        if (!maSach || !maSach.tenSach) return 'Không tìm thấy'
-        return `${maSach.tenSach}`
-      },
-
-      formatDate(date) {
-        return new Date(date).toLocaleDateString('vi-VN')
-      },
-      formatNgay(ngay) {
-        if (!ngay || ngay === 'null') return 'Chưa trả'
-        return new Date(ngay).toLocaleDateString('vi-VN')
-      },
-      prevPage() {
-        if (this.currentPage > 1) {
-          this.currentPage--
-        }
-      },
-      nextPage() {
-        if (this.currentPage < this.totalPages) {
-          this.currentPage++
-        }
-      }
-    },
-    watch: {
-      perPage() {
-        this.currentPage = 1
-      }
-    }
-  }
-</script> -->
-
 <template>
   <div class="borrow-list">
-    <h2>Theo dõi mượn sách</h2>
+    <h1>Theo dõi mượn sách</h1>
 
     <InputSearch v-model="search" />
 
@@ -382,9 +230,7 @@ export default {
       return docGia ? docGia.tenDG : 'Không tìm thấy'
     },
     loadSach(maSach) {
-      console.log('maSach:', maSach)
       const sach = this.danhSachSach.find(s => s.maSach === maSach)
-      console.log('sach:', sach)
       return sach ? sach.tenSach : 'Không tìm thấy'
     },
     formatDate(date) {

@@ -54,7 +54,6 @@ exports.update = async (req, res, next) => {
         }
         return res.send({ message: 'Sách được cập nhật thành công', document });
     } catch (error) {
-        console.log(error);
         return next(new ApiError(500, `Lỗi khi cập nhật sách với ID=${req.params.id}`));
     }
 };

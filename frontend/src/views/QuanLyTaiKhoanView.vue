@@ -1,40 +1,84 @@
 <style scoped>
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #b89e25;
-  }
+.quanly-acc {
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: center;
+}
 
+h1 {
+    font-size: 24pt;
+    color: #6A5ACD;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 12px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+button:first-child {
+  background: #4caf50;
+  color: white;
+}
+
+button:first-child:hover {
+  background: #43a047;
+}
+
+button:nth-child(2) {
+  background: #2196f3;
+  color: white;
+}
+
+button:nth-child(2):hover {
+  background: #1e88e5;
+}
+
+button:nth-child(3) {
+  background: rgba(195, 195, 0);
+  color: white;
+}
+
+button:nth-child(3):hover {
+  background: #e2bc13;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
   .quanly-acc {
     padding: 20px;
   }
 
-  .buttons {
-    margin-bottom: 20px;
-  }
-
   button {
-    padding: 8px 15px;
-    margin: 5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+    width: 100%;
+    padding: 14px;
   }
-
-  button:first-child {
-    background: #4caf50;
-    color: white;
-  }
-
-  button:last-child {
-    background: #2196f3;
-    color: white;
-  }
+}
 </style>
-
 <template>
   <div class="quanly-acc">
-    <h2>Quản lý tài khoản</h2>
+    <h1>Quản lý tài khoản</h1>
 
     <div class="buttons">
       <button @click="activeTab = 'docgia'">Danh sách Độc giả</button>

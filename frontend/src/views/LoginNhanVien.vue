@@ -1,17 +1,79 @@
+Form Đăng Nhập Độc Giả (Chỉnh Sửa)
+vue
+Sao chép
+Chỉnh sửa
 <style scoped>
-  h2 {
-    color: #b89e25;
-  }
+/* Màu chủ đạo */
+:root {
+  --primary-color: #b89e25;
+  --hover-color: #e2bc13;
+}
 
-  button {
-    background-color: #b89e25;
-    color: white;
-    border: none;
-  }
+/* Hiệu ứng nền chung */
+.container {
+  background: linear-gradient(135deg, #f9f6ee, #fffbe6);
+  padding: 50px 0;
+  border-radius: 10px;
+}
 
-  button:hover {
-    background-color: #e2bc13;
-  }
+/* Card login */
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+/* Tiêu đề */
+h2 {
+  color: var(--primary-color);
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Ô nhập liệu */
+.form-control {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(184, 158, 37, 0.5);
+}
+
+/* Nút đăng nhập */
+button {
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+button:hover {
+  background-color: blueviolet;
+  transform: scale(1.05);
+}
+
+/* Liên kết */
+.text-muted {
+  font-size: 14px;
+  transition: color 0.2s ease-in-out;
+}
+
+.text-muted:hover {
+  color: var(--primary-color);
+}
 </style>
 
 <template>
@@ -30,7 +92,7 @@
         <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
       </form>
       <div class="text-start mt-2">
-        <router-link to="/logindocgia" class="text-decoration-none text-muted">Là độc giả?</router-link>
+        <router-link to="/logindocgia" class="text-decoration-none text-muted">Bạn đăng nhập với tư cách là <u>độc giả</u>?</router-link>
       </div>
     </div>
   </div>
@@ -54,11 +116,9 @@ export default {
           matkhauNV: this.matkhauNV 
         });
 
-        // Lấy thông tin từ API
         const chucVu = response.data?.chucvu || response.data?.user?.chucvu;
         const id = response.data?._id || response.data?.user?._id; 
 
-        // Kiểm tra vai trò
         let role = 'docgia';
         if (chucVu === 'quanly') {
           role = 'quanly';
@@ -66,11 +126,10 @@ export default {
           role = 'nhanvien';
         }
 
-        // Lưu thông tin vào Vuex store
         this.$store.dispatch("login", { _id: id, role: role});
 
         alert('Đăng nhập nhân viên thành công');
-        this.$router.push('/'); // Chuyển hướng về trang chủ
+        this.$router.push('/');
       } catch (error) {
         if (error.response) {
           if (error.response.status === 404 || error.response.status === 500) {

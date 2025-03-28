@@ -33,7 +33,6 @@ export default {
     async loadDanhSachMuon() {
       try {
         const res = await axios.get("http://localhost:3000/api/theodoi");
-        //console.log(res.data)
         this.danhSachDonMuon = res.data;
       } catch (error) {
         console.error("Lỗi khi lấy danh sách đơn mượn:", error);
@@ -42,7 +41,6 @@ export default {
     async loadDanhSachDocGia() {
       try {
         const res = await axios.get("http://localhost:3000/api/docgia");
-        //console.log(res.data)
         this.danhSachDocGia = res.data;
       } catch (error) {
         console.error("Lỗi khi lấy danh sách đơn mượn:", error);
@@ -51,7 +49,6 @@ export default {
     async loadDanhSachSach() {
       try {
         const res = await axios.get("http://localhost:3000/api/sach");
-        //console.log(res.data)
         this.danhSachSach = res.data;
       } catch (error) {
         console.error("Lỗi khi lấy danh sách đơn mượn:", error);
@@ -77,26 +74,10 @@ export default {
         console.error("Lỗi khi xác nhận trả:", error);
       }
     },
-    // async xoaDonMuon(don) {
-    //     if (!confirm("Bạn có chắc chắn muốn xóa yêu cầu này?")) return;
-
-    //     try {
-    //       await axios.delete(`http://localhost:3000/api/theodoi/${don._id}`);
-    //       this.danhSachDonMuon = this.danhSachDonMuon.filter(item => item._id !== don._id);
-    //       alert("Xóa thành công!");
-    //     } catch (error) {
-    //     console.error("Lỗi khi xóa yêu cầu:", error);
-    //     if (error.response) {
-    //       console.error("Chi tiết lỗi:", error.response.data);
-    //     }
-    //     alert("Xóa không thành công!");
-    //     }
-    // },
     async xoaDonMuon(don) {
       if (!confirm("Bạn có chắc chắn muốn xóa yêu cầu này?")) return;
 
       try {
-        console.log("Đang gửi yêu cầu xóa với ID:", don._id);
         const response = await axios.delete(`http://localhost:3000/api/theodoi/${don._id}`);
         this.danhSachDonMuon = this.danhSachDonMuon.filter(item => item._id !== don._id);
         alert(response.data.message || "Xóa thành công!");

@@ -1,122 +1,145 @@
 <style scoped>
+/* Tổng thể container */
 .borrow-container {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  text-align: center;
-  background: #f8f9fa;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 650px;
+    margin: 50px auto;
+    padding: 25px;
+    text-align: center;
+    background: linear-gradient(135deg, #e3f2fd, #ede7f6); /* Gradient xanh dương - tím nhạt */
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
 }
 
+/* Tiêu đề chính */
 h2 {
-  color: #5a4631;
+    font-size: 26px;
+    color: #3949AB; /* Xanh tím đậm */
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
-button {
-  margin: 10px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* Form đăng ký mượn */
+.borrow-form {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    text-align: left;
+    border-left: 6px solid #5C6BC0; /* Viền xanh đậm */
+    position: relative;
+    overflow: hidden;
 }
 
+/* Header form */
+.borrow-header {
+    background: #5C6BC0;
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+/* Form nội dung */
+.borrow-content {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Nhãn (label) */
+label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #444;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Cập nhật input & select */
+select, input {
+    width: 100%; /* Tăng chiều rộng */
+    padding: 14px; /* Tăng padding */
+    border: 2px solid #BDBDBD;
+    border-radius: 8px;
+    font-size: 16px; /* Tăng kích thước chữ */
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* Khi focus vào input */
+select:focus, input:focus {
+    border-color: #5C6BC0;
+    outline: none;
+    box-shadow: 0 0 8px rgba(92, 107, 192, 0.6);
+}
+
+/* Nút đăng ký */
 .btn-add {
-  background-color: #b89e25;
-  color: white;
+    background-color: #5C6BC0;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
 }
 
 .btn-add:hover {
-  background-color: #e2bc13;
+    background-color: #3949AB;
+    transform: scale(1.05);
 }
 
-.btn-success {
-  background-color: #28a745;
-  color: white;
-}
+/* Responsive cho mobile */
+@media (max-width: 600px) {
+    .borrow-container {
+        width: 90%;
+        padding: 18px;
+    }
 
-.btn-success:hover {
-  background-color: #218838;
-}
+    .borrow-content {
+        flex-direction: column;
+    }
 
-.btn-danger {
-  background-color: #dc3545;
-  color: white;
-}
-
-.btn-danger:hover {
-  background-color: #c82333;
-}
-
-.borrow-form {
-  background: white;
-  padding: 15px;
-  margin-top: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-label {
-  font-weight: bold;
-  display: block;
-  margin-top: 10px;
-}
-
-select, input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  background: #e9ecef;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-li button {
-  font-size: 14px;
+    select, input {
+        width: 100%;
+    }
 }
 </style>
 
 <template>
   <div class="borrow-container">
-    <h2> Đăng Ký Mượn Sách</h2>
+    <h2>Đăng Ký Mượn Sách</h2>
 
-    <button class="btn btn-add" @click="showBorrowForm = true">
-      Thêm Phiếu Mượn
-    </button>
+    <div class="borrow-form">
+      <div class="borrow-header">Phiếu Mượn</div>
+      <div class="borrow-content">
+        
+        <div>
+          <label for="book">Chọn sách:</label>
+          <select v-model="selectedBook" @change="updateAvailableQuantity">
+            <option v-for="book in books" :key="book._id" :value="book">
+              {{ book.tenSach }} (Còn: {{ book.soQuyen }})
+            </option>
+          </select>
+        </div>
 
-    <div v-if="showBorrowForm" class="borrow-form">
-      <h3>Phiếu Mượn</h3>
-      
-      <label for="book">Chọn sách:</label>
-      <select v-model="selectedBook" @change="updateAvailableQuantity">
-        <option v-for="book in books" :key="book._id" :value="book">
-          {{ book.tenSach }} (Còn: {{ book.soQuyen}})
-        </option>
-      </select>
+        <div>
+          <label for="quantity">Số lượng mượn:</label>
+          <input type="number" v-model.number="quantity" :max="selectedBook ? selectedBook.soQuyen : 1" min="1" />
+        </div>
 
-      <label for="quantity">Số lượng mượn:</label>
-      <input type="number" v-model.number="quantity" :max="selectedBook ? selectedBook.soQuyen : 1" min="1" />
-      <!-- <button class="btn btn-secondary" @click="showBorrowForm = false">
-        Hủy
-      </button> -->
-      <button class="btn btn-add" @click="registerBorrow">Đăng Ký Mượn</button>
-      <button @click="cancelBorrow" class="btn-cancel">Hủy Phiếu Mượn</button>
+      </div>
+      <button class="btn-add" @click="registerBorrow">Đăng Ký Mượn</button>
     </div>
   </div>
 </template>
@@ -127,10 +150,9 @@ import { useStore } from 'vuex';
 
 export default {
   data() {
-    const store = useStore(); // Khởi tạo store trong data
+    const store = useStore();
     return {
-      store, // Lưu store để sử dụng trong computed
-      showBorrowForm: false,
+      store,
       books: [],
       selectedBook: null,
       quantity: 1,
@@ -140,7 +162,7 @@ export default {
 
   computed: {
     docGiaId() {
-      return this.store.state.user._id; // Lấy id từ Vuex store
+      return this.store.state.user._id;
     },
   },
 
@@ -166,17 +188,10 @@ export default {
         alert("Đăng ký mượn thành công! Vui lòng chờ duyệt.");
         this.selectedBook = null;
         this.quantity = 1;
-        this.showBorrowForm = false;
       } catch (error) {
         alert(error.response?.data?.message || "Lỗi không xác định!");
         console.error(error);
       }
-    },
-
-    cancelBorrow() {
-      this.selectedBook = null;
-      this.quantity = 1;
-      this.showBorrowForm = false;
     },
   },
 

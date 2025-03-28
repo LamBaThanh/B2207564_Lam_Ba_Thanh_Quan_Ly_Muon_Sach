@@ -1,28 +1,19 @@
 <style scoped>
-  h2 {
-    text-align: center;
+  h1 {
+    font-size: 24pt;
+    color: #6A5ACD;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
-    color: #b89e25;
-  }
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
 
   button {
     margin-bottom: 10px;
   }
 
   .btn-add {
-    background-color: #b89e25;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-  }
-
-  .btn-add:hover {
-    background-color: #e2bc13;
-  }
-
-  .btn-success {
     background-color: #28a745;
     border: none;
     padding: 8px 12px;
@@ -31,8 +22,21 @@
     color: white;
   }
 
-  .btn-success:hover {
+  .btn-add:hover {
     background-color: #218838;
+  }
+
+  .btn-success {
+    background-color: rgba(195, 195, 0);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+  }
+
+  .btn-success:hover {
+    background-color: #e2bc13;
   }
 
   .ml-2 {
@@ -42,9 +46,8 @@
 
 <template>
   <div>
-    <h2>Quản Lý Sách</h2>
-
     <InputSearch v-model="search" />
+    <h1>Quản Lý Sách</h1>
 
     <button @click="openBookForm(null)" class="btn btn-add">Thêm Sách</button>
 
@@ -170,7 +173,6 @@
             alert('Cập nhật sách thành công!');
           } else {
             const newBook = await createBook(book);
-            console.log('newBook:', newBook);
             if (!newBook) {
               throw new Error('Không nhận được dữ liệu từ API sau khi thêm sách!');
             }

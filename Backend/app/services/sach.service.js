@@ -66,7 +66,7 @@ class SachService {
 
     async update(id, payload) {
         if (payload._id) {
-            delete payload._id; // Xoá trường _id nếu có trong payload
+            delete payload._id;
         }
 
         const update = await this.extractSachData(payload);

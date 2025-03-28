@@ -1,70 +1,82 @@
-/* Cải thiện giao diện tổng thể */
+<style scoped>
+/* Màu chủ đạo */
+:root {
+  --primary-color: #b89e25;
+  --hover-color: #e2bc13;
+}
+
+/* Container tổng thể */
 .container {
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  padding: 40px 20px;
+  background: linear-gradient(135deg, #f9f6ee, #fffbe6);
+  padding: 50px 0;
+  border-radius: 10px;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Card */
 .card {
-  border-radius: 16px;
-  background: #fff;
-  padding: 40px;
-  width: 100%;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
   max-width: 400px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  color: #333;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-input[type="text"], input[type="password"], input[type="date"] {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 14px;
   width: 100%;
-  font-size: 14px;
-  margin-bottom: 16px;
-  transition: border-color 0.3s ease;
+  padding: 30px;
 }
 
-input:focus {
-  border-color: #b89e25;
-  outline: none;
+.card:hover {
+  transform: scale(1.02);
+}
+
+/* Tiêu đề */
+h2 {
+  color: var(--primary-color);
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Ô nhập liệu */
+.form-control {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(184, 158, 37, 0.5);
 }
 
 /* Nút đăng ký */
 button {
-  background-color: #b89e25;
+  background-color: blue;
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 14px;
+  padding: 12px;
   font-size: 16px;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out, transform 0.2s;
 }
 
 button:hover {
-  background-color: #e2bc13;
+  background-color: blueviolet;
+  transform: scale(1.05);
 }
 
-/* Link chuyển đến trang đăng nhập */
-span {
-  color: #b89e25;
-  font-weight: bold;
+/* Liên kết đăng nhập */
+.text-muted {
+  font-size: 14px;
+  transition: color 0.2s ease-in-out;
 }
 
-span:hover {
-  color: #e2bc13;
+.text-muted:hover {
+  color: var(--primary-color);
 }
 
 /* Radio Group */
@@ -74,7 +86,7 @@ span:hover {
   margin-bottom: 16px;
 }
 
-label {
+.radio-group label {
   margin: 0 10px;
   display: flex;
   align-items: center;
@@ -83,20 +95,9 @@ label {
 
 input[type="radio"] {
   margin-right: 6px;
-  accent-color: #b89e25;
+  accent-color: var(--primary-color);
 }
-
-/* Responsive */
-@media (max-width: 480px) {
-  .card {
-    padding: 20px;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
-}
-
+</style>
 
 <template>
   <div class="container d-flex flex-column justify-content-center align-items-center vh-50 mt-5">

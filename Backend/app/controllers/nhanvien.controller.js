@@ -2,7 +2,6 @@ const NhanvienService = require('../services/nhanvien.service');
 const MongoDB = require('../utils/mongodb.util');
 const ApiError = require('../api-error');
 
-// Create and save a new employee
 exports.create = async (req, res, next) => {
     try {
         const nhanvienService = new NhanvienService(MongoDB.client);

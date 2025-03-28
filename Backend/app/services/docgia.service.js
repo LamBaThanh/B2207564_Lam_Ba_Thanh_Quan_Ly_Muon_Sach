@@ -109,6 +109,16 @@ class DocgiaService {
             throw new Error("Số điện thoại, mật khẩu, xác nhận mật khẩu là bắt buộc");
         }
 
+        const phoneRegex = /^0\d{9}$/;
+        if (!phoneRegex.test(data.dienthoaiDG)) {
+            throw new Error("Số điện thoại không hợp lệ, phải gồm 10 số và bắt đầu bằng số 0");
+        }
+
+        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+        if (!passwordRegex.test(data.matkhauDG)) {
+            throw new Error("Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ cái và số");
+        }
+        
         if (data.matkhauDG !== data.confirmmatkhauDG) {
             throw new Error("Mật khẩu xác nhận không khớp");
         }

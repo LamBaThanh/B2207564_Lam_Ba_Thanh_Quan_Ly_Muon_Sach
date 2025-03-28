@@ -70,7 +70,7 @@ class TheodoiService {
 
     async delete(id) {
         const result = await this.Theodoi.findOneAndDelete({ _id: new ObjectId(id) });
-        return result.value;
+        return result;
     }
 
     async deleteAll() {
@@ -79,7 +79,6 @@ class TheodoiService {
     }
 
     async dangKyMuonSach(docGiaID, maSach, soQuyen, ngayMuon) {
-        console.log(docGiaID, maSach, soQuyen, ngayMuon);
         if (!docGiaID || !maSach || !soQuyen || !ngayMuon) {
             throw new Error('Dữ liệu không hợp lệ. Vui lòng kiểm tra lại.');
         }

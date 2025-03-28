@@ -100,9 +100,18 @@ class NhanvienService {
     }
 
     async registerNhanVien(data) {
-        console.log(data.dienthoaiNV, data.matkhauNV, data.hotenNV);
         if (!data.dienthoaiNV || !data.matkhauNV || !data.hotenNV) {
             throw new Error("Số điện thoại, mật khẩu, họ tên là bắt buộc");
+        }
+
+        const phoneRegex = /^0\d{9}$/;
+        if (!phoneRegex.test(data.dienthoaiNV)) {
+            throw new Error("Số điện thoại không hợp lệ, phải gồm 10 số và bắt đầu bằng số 0");
+        }
+
+        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+        if (!passwordRegex.test(data.matkhauNV)) {
+            throw new Error("Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ cái và số");
         }
 
         if (data.matkhauNV !== data.confirmmatkhauNV) {

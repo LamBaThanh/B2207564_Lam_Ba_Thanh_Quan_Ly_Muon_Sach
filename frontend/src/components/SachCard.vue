@@ -1,54 +1,85 @@
 <style scoped>
 .sach-card {
-  width: 250px;
+  width: 270px;
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgb(0, 0, 0);
   overflow: hidden;
   text-align: center;
-  padding: 15px;
-  transition: transform 0.2s ease-in-out;
+  padding: 20px;
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  position: relative;
 }
 
 .sach-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .sach-image {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sach-card:hover .sach-image {
+  transform: scale(0.9);
 }
 
 .sach-info {
-  padding: 10px 0;
+  padding: 15px 0;
 }
 
 .sach-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  color: #333;
+  color: #222;
+  margin-bottom: 5px;
 }
 
 .sach-author, .sach-year, .sach-price, .sach-stock, .sach-publisher {
-  font-size: 12pt;
+  font-size: 14px;
   color: #555;
-  margin: 5px 0;
+  margin: 6px 0;
+}
+
+.sach-stock {
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .sach-stock.out-of-stock {
   color: red;
   font-weight: bold;
 }
+
+.sach-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.sach-card::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+  bottom: 0;
+  left: 0;
+  border-radius: 0 0 15px 15px;
+}
 </style>
+
 
 <template>
   <div class="sach-card">
     <div class="sach-info">
       <img v-if="getNXBName(sach.maNXB) === 'Nhà Xuất Bản Giáo Dục Việt Nam'" :src= "`https://lambanner.com/wp-content/uploads/2022/01/MNT-DESGIN-THIET-KE-BIA-SACH-1130x570.jpg`" alt="Hình ảnh sách" class="sach-image">
       <img v-else-if="getNXBName(sach.maNXB) === 'Nhà Xuất Bản Trẻ'" :src= "`https://cdn.pixabay.com/photo/2018/01/17/18/43/book-3088775_1280.jpg`" alt="Hình ảnh sách" class="sach-image">
-      <img v-else="getNXBName(sach.maNXB) === 'Nhà Xuất Bản Kim Đồng'" :src= "`https://png.pngtree.com/element_our/20190522/ourmid/pngtree-open-book-illustration-image_1072047.jpg`" alt="Hình ảnh sách" class="sach-image">
+      <img v-else :src= "`https://png.pngtree.com/element_our/20190522/ourmid/pngtree-open-book-illustration-image_1072047.jpg`" alt="Hình ảnh sách" class="sach-image">
       <h2 class="sach-title">{{ sach.tenSach }}</h2>
       <p class="sach-author"><strong>Mã sách:</strong> {{ sach.maSach || "Không rõ" }}</p>
       <p class="sach-author"><strong>Tác giả:</strong> {{ sach.tacGia || "Không rõ" }}</p>

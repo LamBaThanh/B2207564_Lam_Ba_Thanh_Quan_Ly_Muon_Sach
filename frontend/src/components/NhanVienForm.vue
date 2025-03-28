@@ -242,7 +242,6 @@
         }
         this.$emit('submit', this.nhanvienLocal)
         this.hasChanged = false
-        //alert('Thông tin nhân viên đã được lưu!')
       }
     }
   }

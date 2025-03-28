@@ -1,95 +1,102 @@
 <style scoped>
-  .account-view {
-    max-width: 480px;
-    min-width: 320px;
+/* Tổng thể khung hiển thị tài khoản */
+.account-view {
+    max-width: 550px;
+    min-width: 340px;
     margin: 50px auto;
-    padding: 20px;
-    background: #f9f4f2; 
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
     text-align: center;
-    border: 2px solid #d8bb2b; 
+    border: 2px solid #5D5FEF;
     transition: all 0.3s ease-in-out;
-  }
+}
 
-  h1 {
-    font-size: 22pt;
-    color: #b89e25; 
-    margin-bottom: 15px;
-    font-weight: 600;
-  }
+/* Khi chỉnh sửa */
+.account-view.editing {
+    border-color: #4B48D9;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
 
-  p {
-    font-size: 13pt;
-    color: #333;
-    padding: 10px;
-    border-bottom: 1px solid #b89e25;
+/* Tiêu đề */
+h1 {
+    font-size: 24pt;
+    color: #6A5ACD;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Nội dung thông tin */
+p {
+    font-size: 16px;
+    color: #222;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 14px;
+    border-radius: 8px;
+    border-left: 4px solid #5D5FEF;
     text-align: left;
-    margin: 0;
-  }
+    margin: 10px 0;
+    font-weight: 500;
+}
 
-  p:last-child {
-    border-bottom: none;
-  }
+/* Nhấn mạnh tiêu đề */
+p strong {
+    color: #2E3192;
+}
 
-  p strong {
-    color: #5a4631; 
-  }
-
-  button {
-    background: #d8bb2b; 
+/* Nút bấm */
+button {
+    background: linear-gradient(135deg, #5D5FEF, #4B48D9);
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 14px 20px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 15px;
-    font-weight: 500;
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    margin-top: 15px;
-  }
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
 
-  button:hover {
-    background: #c7aa30; 
-    transform: scale(1.05);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
-  }
+/* Hiệu ứng khi hover */
+button:hover {
+    background: linear-gradient(135deg, #4B48D9, #3B38C9);
+    transform: scale(1.08);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
 
-  button:active {
-    background: #9d871e; 
-    transform: scale(0.98);
-  }
+/* Hiệu ứng khi click */
+button:active {
+    background: #2E3192;
+    transform: scale(0.96);
+}
 
-  button:focus-visible {
-    outline: 2px solid #fff;
-    outline-offset: 2px;
-  }
-
-  .account-view.editing {
-    border-color: #b89e25;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  @media (max-width: 600px) {
+/* Responsive */
+@media (max-width: 600px) {
     .account-view {
-      width: 90%;
-      padding: 15px;
+        width: 92%;
+        padding: 20px;
     }
 
     h1 {
-      font-size: 20pt;
+        font-size: 20pt;
     }
 
     p {
-      font-size: 14pt;
-      padding: 8px;
+        font-size: 14px;
+        padding: 12px;
     }
 
     button {
-      font-size: 14px;
-      padding: 8px 12px;
+        font-size: 14px;
+        padding: 12px 18px;
     }
-  }
+}
 </style>
 
 <template>
@@ -181,7 +188,7 @@
             gioitinh: userData.gioitinh || '',
             chucvu:
               this.userRole === 'docgia'
-                ? 'Đọc giả'
+                ? 'Độc giả'
                 : userData.chucvu === 'quanly'
                 ? 'Quản lý'
                 : 'Nhân viên',

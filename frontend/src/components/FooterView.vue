@@ -1,206 +1,120 @@
 <style scoped>
   .footer {
-    background-color: #f8f9fa;
-    padding: 20px 0;
-    border-top: 2px solid #ddd;
-    font-size: 13pt;
+    background: linear-gradient(to bottom, #e0f7fa, #00b4d8, #e0f7fa);
+    padding: 15px 0 ;
+    border-top: 1px solid #0077b6;
+    margin-top: 40px;
+    color: #000;
+    font-family: Arial, sans-serif;
   }
 
-  .footer .d-flex {
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    gap: 30px;
   }
 
-  .footer-info {
+  .footer-section {
     flex: 1;
-    padding: 10px;
-    max-width: 500px;
-    margin: 0 auto;
+    min-width: 280px;
+    max-width: 33%;
   }
 
-  .footer-info h2 {
-    font-size: 19pt;
-    color: #343a40;
-    font-weight: bold;
+  .footer-section h4 {
+    font-size: 20pt;
+    color: #000;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #00b4d8;
+    display: inline-block;
+    padding-bottom: 8px;
   }
 
-  .footer-info p {
-    font-size: 13pt;
-    color: #6c757d;
-    margin-top: 5px;
-  }
-
-  .text-muted {
-    font-size: 13pt;
-    color: #6c757d;
-  }
-
-  .support-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: 1px solid #ffc107;
-    padding: 10px 20px;
-    border-radius: 8px;
-    width: fit-content;
-    background: #fffaf0;
-  }
-
-  .icon {
-    color: #ffc107;
-  }
-
-  .footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  .footer-section p, .footer-link {
+    font-size: 14pt;
+    color: #000;
+    margin: 10px 0;
+    line-height: 1.6;
   }
 
   .footer-link {
-    padding: 5px 0;
-    color: #6c757d;
     cursor: pointer;
-    transition: color 0.3s ease;
-    text-decoration: none;
-    font-size: 13pt;
+    display: inline-block;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .footer-link::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    display: block;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .footer-link:hover::after {
+    transform: scaleX(1);
   }
 
   .footer-link:hover {
-    color: #007bff;
+    color: rgb(72, 72, 72);
   }
 
   .footer-bottom {
+    margin-top: 40px;
+    border-top: 1px solid #00b4d8;
+    padding-top: 20px;
     text-align: center;
-    padding: 15px 0;
-    border-top: 1px solid #ddd;
-    margin-top: 20px;
     font-size: 12pt;
-    color: #6c757d;
+    color: #000;
   }
 
-  /* Định dạng chung cho modal */
-  .modal {
-    z-index: 1050;
+  /* Modal styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    align-items: center;
     justify-content: center;
-  }
-
-  .modal-dialog {
-    max-width: 600px; /* Giới hạn chiều rộng */
-    width: 90%;
-    animation: fadeIn 0.3s ease-in-out;
+    align-items: center;
   }
 
   .modal-content {
-    border-radius: 12px; /* Bo góc */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Đổ bóng */
+    background-color: white;
+    padding: 40px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 15px 40px rgba(0, 119, 182, 0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease;
   }
 
-  /* Header của modal */
-  .modal-header {
-    background-color: #f8f9fa;
-    border-bottom: 2px solid #ddd;
-    border-radius: 12px 12px 0 0;
-    padding: 15px;
-  }
-
-  /* Tiêu đề modal */
-  .modal-title {
-    font-size: 18pt;
-    font-weight: bold;
-    color: #343a40;
-  }
-
-  /* Nút đóng modal */
-  .btn-close {
-    font-size: 18px;
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
     cursor: pointer;
-    transition: 0.3s ease;
+    color: #0077b6;
   }
 
-  .btn-close:hover {
-    transform: scale(1.2);
-  }
-
-  /* Nội dung modal */
-  .modal-body {
-    padding: 20px;
-    font-size: 14pt;
-    color: #555;
-  }
-
-  /* Footer modal */
-  .modal-footer {
-    border-top: 2px solid #ddd;
-    padding: 15px;
-    border-radius: 0 0 12px 12px;
-  }
-
-  /* Cải thiện hiệu ứng nền mờ */
-  .modal-backdrop {
-    z-index: 1040;
-    background-color: rgba(0, 0, 0, 0.5);
-    animation: fadeIn 0.3s ease-in-out;
-  }
-
-  @media (max-width: 768px) {
-    .footer {
-      padding: 15px 0;
-    }
-
-    .footer .d-flex {
-      text-align: center;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer-info h2 {
-      font-size: 18pt;
-    }
-
-    .support-box {
-      justify-content: center;
-      width: 100%;
-      max-width: 300px;
-      margin: 0 auto;
-    }
-
-    .footer-links {
-      align-items: center;
-    }
-
-    .footer-link {
-      font-size: 13pt;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .footer-info h2 {
-      font-size: 16pt;
-    }
-
-    .footer-info p {
-      font-size: 13pt;
-    }
-
-    .support-box {
-      flex-direction: column;
-      text-align: center;
-      padding: 10px;
-    }
-
-    .footer-bottom {
-      font-size: 12pt;
-    }
+  .close-btn:hover {
+    color: #00b4d8;
   }
 
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(-20px);
+      transform: translateY(-10px);
     }
     to {
       opacity: 1;
@@ -208,206 +122,90 @@
     }
   }
 
-  .modal {
-    z-index: 1050;
-  }
-  .modal-backdrop {
-    z-index: 1040;
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-section h4 {
+      font-size: 18pt;
+    }
+
+    .footer-section p, .footer-link {
+      font-size: 12pt;
+    }
   }
 </style>
 
 <template>
-  <footer class="container-fluid max-w-1280 mt-5 footer">
-    <div class="d-flex flex-column flex-lg-row justify-content-between gap-4">
-      <div class="footer-info ps-lg-5">
-        <h2 class="fw-bold mb-0 text-muted">Hệ Thống Quản Lý Mượn Sách</h2>
-        <p class="text-muted opacity-75">
-          Hỗ trợ độc giả trong việc đăng ký và quản lý mượn sách trực tuyến một
-          cách thuận tiện.
-        </p>
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-section">
+        <h4>Hệ Thống Quản Lý Mượn Sách</h4>
+        <p>Hỗ trợ độc giả trong việc đăng ký và quản lý mượn sách trực tuyến một cách thuận tiện.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Chi Tiết Liên Hệ</h4>
+        <p><i class="bi bi-geo-alt"></i> Địa chỉ: Đại Học Cần Thơ</p>
+        <p><i class="bi bi-envelope"></i> Email: thanhb2207564@student.ctu.edu.vn</p>
+        <p><i class="bi bi-telephone"></i> Số điện thoại: 0708 699 702 (Hỗ trợ độc giả 24/7)</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Thông Tin</h4><br>
+        <span class="footer-link" @click="openModal('gioithieu')">Giới thiệu</span><br>
+        <span class="footer-link" @click="openModal('dieukhoan')">Điều khoản mượn sách</span><br>
+        <span class="footer-link" @click="openModal('huongdan')">Hướng dẫn sử dụng</span>
       </div>
     </div>
+    <div class="footer-bottom">Bản quyền © 2025 - Hệ Thống Quản Lý Mượn Sách.</div>
 
-    <div class="container max-w-1280 mx-auto px-0 px-lg-1">
-      <div class="row">
-        <div class="col-4 ps-lg-5 text-center text-lg-start">
-          <div class="fw-bold fs-4">
-            Chi Tiết
-            <span class="text-primary-custom">Liên Hệ</span>
-          </div>
-          <div class="text-muted my-3">
-            <i class="bi bi-geo-alt"></i>
-            Đại học Cần Thơ
-          </div>
-          <div class="text-muted my-3">
-            <i class="bi bi-envelope"></i>
-            phatb2207554@student.ctu.edu.vn
-          </div>
-          <div>
-            <div class="support-box">
-              <i class="bi bi-telephone fs-4 icon"></i>
-              <div>
-                <span class="text-muted">Hỗ trợ độc giả 24/7</span>
-                <div class="fw-semibold fs-5">0862 974 822</div>
-              </div>
-            </div>
-          </div>
+    <!-- Modal -->
+    <div v-if="activeModal" class="modal-overlay" @click.self="closeModal">
+      <div class="modal-content">
+        <button class="close-btn" @click="closeModal">&times;</button>
+        <div v-if="activeModal === 'gioithieu'">
+          <h3>Giới Thiệu</h3>
+          <p>Hệ thống quản lý mượn sách giúp bạn dễ dàng theo dõi và quản lý việc mượn sách trực tuyến.</p>
         </div>
-
-        <div class="col-4 ps-lg-5 text-center text-lg-start">
-          <b>Thông Tin</b>
-          <div class="footer-links">
-            <router-link to="/" class="footer-link">Trang chủ</router-link>
-            <a
-              href="#"
-              class="footer-link"
-              @click.prevent="showDieuKhoan = true"
-            >
-              Điều khoản mượn sách
-            </a>
-            <a
-              href="#"
-              class="footer-link"
-              @click.prevent="showHuongDan = true"
-            >
-              Hướng dẫn sử dụng
-            </a>
-          </div>
+        <div v-else-if="activeModal === 'dieukhoan'">
+          <h3>Điều Khoản Mượn Sách</h3>
+          <p>Vui lòng đọc kỹ các điều khoản mượn sách trước khi thực hiện giao dịch.</p>
+          <p>1. Độc giả cần sở hữu tài khoản hợp lệ để tham gia dịch vụ mượn sách.</p>
+          <p>2. Thời gian mượn sách tối đa là 20 ngày; sau thời hạn này, độc giả sẽ nhận được thông báo nhắc nhở từ hệ thống trong vòng 3 ngày trước khi áp dụng biện pháp xử lý.</p>
+          <p>3. Nếu sách không được trả sau thời gian gia hạn nhắc nhở, độc giả sẽ phải chịu phí phạt quá hạn theo quy định của hệ thống.</p>
+          <p>4. Nếu sách bị mất hoặc hư hỏng, độc giả có trách nhiệm bồi thường theo quy định của hệ thống.</p>
+          <p>5. Việc gia hạn thời gian mượn sách có thể được xem xét nếu độc giả gửi yêu cầu trước khi hết hạn, tùy thuộc vào tình trạng sách và quyết định của hệ thống.</p>
         </div>
-
-        <div class="col-4 ps-lg-5 text-center text-lg-start">
-          <b>Tài Khoản</b>
-          <div class="footer-links">
-            <!-- <router-link to="/login-docgia" class="footer-link">Đăng nhập</router-link>  -->
-            <router-link to="/lichsumuon" class="footer-link">
-              Lịch sử mượn
-            </router-link>
-            <router-link to="/muonsach" class="footer-link">
-              Đăng ký mượn
-            </router-link>
-          </div>
+        <div v-else-if="activeModal === 'huongdan'">
+          <h3>Hướng Dẫn Sử Dụng</h3>
+          <p>Hướng dẫn chi tiết cách sử dụng hệ thống quản lý mượn sách.</p>
+          <p>1. Sử dụng số điện thoại và mật khẩu được đăng ký tại web.</p>
+          <p>2. Độc giả có thể xem sách ở trang chủ, nếu yêu thích quyển sách nào đó, có thể thông qua chức năng mượn sách để gửi yêu cầu mượn và chờ được duyệt.</p>
+          <p>3. Theo dõi sách mình đã mượn thông qua lịch sử mượn.</p>
+          <p>4. Đọc kĩ quy định mượn, cũng như tuân thủ theo các điều khoản.</p>
         </div>
       </div>
     </div>
-
-    <div class="footer-bottom text-center">
-      <div class="text-muted">
-        Bản quyền © 2025 - Hệ Thống Quản Lý Mượn Sách.
-      </div>
-    </div>
-
-    <div
-      class="modal fade show"
-      v-if="showDieuKhoan"
-      style="display: block"
-      aria-modal="true"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Điều khoản mượn sách</h5>
-            <button
-              type="button"
-              class="btn-close"
-              @click="showDieuKhoan = false"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <p>
-              <i class="bi bi-bookmark"></i>
-              Độc giả cần có tài khoản hợp lệ để mượn sách.
-            </p>
-            <p>
-              <i class="bi bi-bookmark"></i>
-              Thời gian mượn sách tối đa là 20 ngày.
-            </p>
-            <p>
-              <i class="bi bi-bookmark"></i>
-              Quá hạn sẽ bị phạt theo quy định.
-            </p>
-            <p>
-              <i class="bi bi-bookmark"></i>
-              Nếu mất hoặc làm hỏng sách, độc giả phải bồi thường.
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" @click="showDieuKhoan = false">
-              Đóng
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade show"
-      v-if="showHuongDan"
-      style="display: block"
-      aria-modal="true"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Hướng dẫn sử dụng</h5>
-            <button
-              type="button"
-              class="btn-close"
-              @click="showHuongDan = false"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <p>
-              <i class="bi bi-1-circle"></i>
-              <b> Đăng nhập/Đăng ký:</b>
-              Sử dụng số điện thoại để đăng nhập hoặc đăng ký tài khoản.
-            </p>
-            <p>
-              <i class="bi bi-2-circle"></i>
-              <b> Tìm kiếm sách:</b>
-              Vào trang chủ để xem danh mục sách hoặc tìm sách với thanh tìm
-              kiếm.
-            </p>
-            <p>
-              <i class="bi bi-3-circle"></i>
-              <b> Đăng ký mượn:</b>
-              Chọn sách, thêm vào danh sách mượn, sau đó xác nhận.
-            </p>
-            <p>
-              <i class="bi bi-4-circle"></i>
-              <b> Kiểm tra lịch sử:</b>
-              Xem trạng thái mượn sách trong mục
-              <b>"Lịch sử mượn"</b>
-              .
-            </p>
-            <p>
-              <i class="bi bi-5-circle"></i>
-              <b> Trả sách:</b>
-              Mang sách đến thư viện hoặc sử dụng dịch vụ giao nhận để gửi lại.
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" @click="showHuongDan = false">
-              Đóng
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal-backdrop fade show"
-      v-if="showDieuKhoan || showHuongDan"
-    ></div>
   </footer>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        showDieuKhoan: false,
-        showHuongDan: false
-      }
-    }
-  }
+export default {
+  data() {
+    return {
+      activeModal: null,
+    };
+  },
+  methods: {
+    openModal(type) {
+      this.activeModal = type;
+    },
+    closeModal() {
+      this.activeModal = null;
+    },
+  },
+};
 </script>

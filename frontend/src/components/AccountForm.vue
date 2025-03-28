@@ -1,41 +1,47 @@
 <style scoped>
-  form {
+/* Tổng thể của form */
+form {
     max-width: 450px;
     margin: 20px auto;
     padding: 25px;
-    background: #f8f9fa;
+    background: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
-  }
+}
 
-  .form-group {
+/* Khoảng cách giữa các input */
+.form-group {
     margin-bottom: 15px;
-  }
+}
 
-  label {
+/* Kiểu chữ và khoảng cách cho label */
+label {
     font-weight: bold;
     display: block;
     margin-bottom: 6px;
     color: #333;
-  }
+}
 
-  input {
+/* Kiểu dáng input */
+input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 15px;
     transition: all 0.3s ease-in-out;
-  }
+}
 
-  input:focus {
+/* Hiệu ứng khi focus vào input */
+input:focus {
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
-  }
+}
 
-  .btn {
+/* Kiểu nút bấm */
+.btn {
     padding: 10px 15px;
     border-radius: 6px;
     font-size: 15px;
@@ -45,49 +51,80 @@
     display: inline-block;
     text-align: center;
     border: none;
-  }
+}
 
-  .btn-success {
+/* Nút Lưu */
+.btn-success {
     background-color: #28a745;
     color: white;
-  }
+}
 
-  .btn-success:hover {
+.btn-success:hover {
     background-color: #218838;
-  }
+}
 
-  .btn-secondary {
+/* Nút Hủy */
+.btn-secondary {
     background-color: #6c757d;
     color: white;
-  }
+}
 
-  .btn-secondary:hover {
+.btn-secondary:hover {
     background-color: #5a6268;
-  }
+}
 
-  .btn:active {
+/* Hiệu ứng khi nhấn nút */
+.btn:active {
     transform: scale(0.95);
-  }
+}
 
-  .button-group {
+/* Nhóm nút */
+.button-group {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
-  }
+}
 
-  .radio-group {
+/* Nhóm radio */
+.radio-group {
     display: flex;
     justify-content: center;
     gap: 15px;
     margin-bottom: 10px;
-  }
+}
 
-  .radio-group label {
+.radio-group label {
     display: flex;
     align-items: center;
     gap: 5px;
-  }
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    form {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    input {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .btn {
+        width: 100%;
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+    }
+}
 </style>
+
 
 <template>
   <form @submit.prevent="saveChanges">
@@ -161,10 +198,6 @@
               ? newUser.ngaysinh.split('T')[0]
               : ''
             this.form.gioitinh = newUser.gioitinh || 'Nam'
-            //this.form.dienthoaiDG = newUser.dienthoaiDG || ''
-            //this.form.matkhauDG = newUser.matkhauDG || ''
-            //this.form.dienthoaiNV = newUser.dienthoaiNV || ''
-            //this.form.matkhauNV = newUser.matkhauNV || ''
           }
         },
         immediate: true
@@ -185,18 +218,13 @@
               tenDG: this.form.hoten,
               ngaysinh: this.form.ngaysinh,
               gioitinh: this.form.gioitinh
-              // dienthoaiDG: this.form.dienthoaiDG,
-              // matkhauDG: this.form.matkhauDG
             }
           } else {
             updateData = {
               diachi: this.form.diachi,
               hotenNV: this.form.hoten,
-              // dienthoaiNV: this.form.dienthoaiNV,
-              // matkhauNV: this.form.matkhauNV
             }
           }
-          console.log(updateData)
           await updateUserInfo(this.role, this.userId, updateData)
 
           alert('Cập nhật thành công!')

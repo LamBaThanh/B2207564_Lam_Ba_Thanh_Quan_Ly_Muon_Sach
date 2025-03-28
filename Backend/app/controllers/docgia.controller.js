@@ -2,7 +2,6 @@ const DocgiaService = require('../services/docgia.service');
 const MongoDB = require('../utils/mongodb.util');
 const ApiError = require('../api-error');
 
-// Tạo và lưu một độc giả mới
 exports.create = async (req, res, next) => {
     if (!req.body?.tenDG){
         return next(new ApiError(400, 'Tên không được để trống'));
@@ -99,7 +98,6 @@ exports.login = async (req, res, next) => {
 
 exports.register = async (req, res, next) => {
     try {
-        console.log('Đăng ký độc giả:', req.body);
         const docgiaService = new DocgiaService(MongoDB.client);
         const result = await docgiaService.registerDocGia(
             req.body

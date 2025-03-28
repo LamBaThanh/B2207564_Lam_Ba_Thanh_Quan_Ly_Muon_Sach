@@ -73,16 +73,13 @@ export default {
 
       try {
         const res = await axios.get("http://localhost:3000/api/theodoi");
-        console.log(res.data);
         this.lichSuMuon = res.data.filter(m => String(m.maDG) === String(this.getUser._id)); 
       } catch (error) {
         console.error("Lỗi khi lấy lịch sử mượn sách:", error);
       }
     },
     gettenSach(maSach) {
-      console.log(maSach)
       const sach = this.sachs.find(s => String(s.maSach) === String(maSach));
-      console.log(sach)
       return sach ? sach.tenSach : 'Không tìm thấy'
     },
     formatDate(dateString) {

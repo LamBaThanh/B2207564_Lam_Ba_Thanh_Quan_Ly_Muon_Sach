@@ -6,7 +6,6 @@ export default createStore({
   },
   mutations: {
     setUser(state, user) {
-      //console.log("Cập nhật Vuex user:", user);
       state.user = { ...user };
       localStorage.setItem('user', JSON.stringify(user)); 
     },
@@ -24,6 +23,8 @@ export default createStore({
     getUser: (state) => state.user,
     getUserRole: (state) => state.user.role || '',
     getUserSdt: (state) => state.user._id || '',
+    isLoggedIn: (state) => !!state.user._id,
   },
 });
+
 

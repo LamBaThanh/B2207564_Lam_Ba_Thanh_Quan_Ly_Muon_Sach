@@ -5,7 +5,7 @@
 }
 
 .form-control {
-  border: 2px solid #b89e25;
+  border: 3px solid blue;
   border-right: none;
   border-radius: 20px 0 0 20px; /* Bo tròn bên trái */
   padding: 10px;
@@ -14,21 +14,17 @@
 
 .form-control:focus {
   box-shadow: none;
-  border-color: #8a7312;
+  border-color: blueviolet;
 }
 
 .btn-outline-secondary {
-  border: 2px solid #b89e25;
-  border-left: none;
-  border-radius: 0 20px 20px 0; /* Bo tròn bên phải */
-  background-color: #b89e25;
+  background-color: gray;
   color: white;
   font-weight: bold;
 }
 
 .btn-outline-secondary:hover {
-  background-color: #8a7312;
-  border-color: #8a7312;
+  background-color: brown;
 }
 </style>
 

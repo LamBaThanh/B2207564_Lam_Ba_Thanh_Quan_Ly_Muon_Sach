@@ -11,7 +11,6 @@ exports.create = async (req, res, next) => {
         const document = await theodoiService.create(req.body);
         return res.send(document);
     } catch (error) {
-        console.log(error);
         return next(new ApiError(500, 'Có lỗi trong khi tạo theo dõi mới'));
     }
 };
@@ -81,7 +80,7 @@ exports.delete = async (req, res, next) => {
             return next(new ApiError(404, 'Lịch sử mượn không tồn tại'));
         }
 
-        return res.send({ message: 'Lịch sử mượn được xóa thành công' });
+        return res.send({ message: 'Xóa thành công' });
     } catch (error) {
         return next(new ApiError(500, `Có lỗi xảy ra trong khi xóa id=${req.params.id}`));
     }
@@ -100,7 +99,6 @@ exports.deleteAll = async (req, res, next) => {
 
 exports.dangKyMuonSach = async (req, res, next) => {
     try {
-        console.log(req.body);
         const { docGiaID, maSach, soQuyen, ngayMuon } = req.body;
         const theodoiService = new TheodoiService(MongoDB.client);
         const result = await theodoiService.dangKyMuonSach(docGiaID, maSach, soQuyen, ngayMuon);
