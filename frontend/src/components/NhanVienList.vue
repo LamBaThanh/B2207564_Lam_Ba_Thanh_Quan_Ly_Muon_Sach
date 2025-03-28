@@ -170,7 +170,7 @@
     },
     computed: {
       filteredNhanViens() {
-        const keyword = this.search.toLowerCase().trim()
+        const keyword = this.search.normalize("NFC").toLowerCase().trim();
         return this.nhanViens.filter(nhanvien => {
           const hoTen = nhanvien.hotenNV ? nhanvien.hotenNV.toLowerCase() : ''
           const soDienThoai = nhanvien.dienthoaiNV

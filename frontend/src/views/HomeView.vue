@@ -93,21 +93,20 @@
     },
     computed: {
       filteredBooks() {
-    return this.sachList.filter(book => {
-        const keyword = this.search.normalize("NFC").toLowerCase().trim();
-        const manxbValue = book.maNXB?._id || book.maNXB || '';
-        const nxb = this.nxbs.find(n => String(n.maNXB).trim() === String(manxbValue).trim());
-        const tenNXB = nxb ? nxb.tenNXB.normalize("NFC").toLowerCase() : '';
-        return (
-            book.tenSach?.normalize("NFC").toLowerCase().includes(keyword) ||
-            book.maSach?.toLowerCase().includes(keyword) ||
-            book.tacGia?.toLowerCase().includes(keyword) ||
-            (book.namXB?.toString() || '').toLowerCase().includes(keyword) ||
-            tenNXB.includes(keyword)
-        );
-    });
-}
-,
+        return this.sachList.filter(book => {
+            const keyword = this.search.normalize("NFC").toLowerCase().trim();
+            const manxbValue = book.maNXB?._id || book.maNXB || '';
+            const nxb = this.nxbs.find(n => String(n.maNXB).trim() === String(manxbValue).trim());
+            const tenNXB = nxb ? nxb.tenNXB.normalize("NFC").toLowerCase() : '';
+            return (
+                book.tenSach?.normalize("NFC").toLowerCase().includes(keyword) ||
+                book.maSach?.toLowerCase().includes(keyword) ||
+                book.tacGia?.toLowerCase().includes(keyword) ||
+                (book.namXB?.toString() || '').toLowerCase().includes(keyword) ||
+                tenNXB.includes(keyword)
+            );
+        });
+},
 
       totalPages() {
         return Math.ceil(this.filteredBooks.length / this.pageSize)

@@ -195,6 +195,7 @@ export default {
 
   data() {
     return {
+      books: [],
       currentPage: 1,
       perPage: 10,
       search: ''
@@ -202,19 +203,20 @@ export default {
   },
   computed: {
     filteredDonMuon() {
-      const keyword = this.search.toLowerCase().trim()
+      const keyword1 = this.search.normalize("NFC").toLowerCase().trim();
+      const keyword2 = this.search.toLowerCase().trim()
       return this.danhSachDonMuon.filter(don => {
-        const tenSach = don.tenSach?.toLowerCase() || ''
-        const hoTen = don.tenDG?.toLowerCase() || ''
-        const trangThai = don.trangThai?.toLowerCase() || ''
-
+        const tenSach = this.loadSach(don.maSach).toLowerCase().trim() || '';
+        const hoTen = this.loadHoTen(don.maDG).toLowerCase().trim() || '';
+        const trangThai = don.trangThai?.toLowerCase().trim() || '';
         return (
-          tenSach.includes(keyword) ||
-          hoTen.includes(keyword) ||
-          trangThai.includes(keyword)
-        )
-      })
+          tenSach.includes(keyword1) ||
+          hoTen.includes(keyword2) ||
+          trangThai.includes(keyword1)
+        );
+      });
     },
+
     totalPages() {
       return Math.ceil(this.filteredDonMuon.length / this.perPage)
     },
@@ -233,6 +235,10 @@ export default {
       const sach = this.danhSachSach.find(s => s.maSach === maSach)
       return sach ? sach.tenSach : 'Không tìm thấy'
     },
+    // loadtenSach(tenSach) {
+    //   const sach = this.danhSachSach.find(s => s.tenSach === tenSach)
+    //   return sach ? sach.tenSach : 'Không tìm thấy'
+    // },
     formatDate(date) {
       return new Date(date).toLocaleDateString('vi-VN')
     },

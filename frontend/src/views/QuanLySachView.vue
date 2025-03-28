@@ -110,13 +110,14 @@
       filteredBooks() {
         return this.books.filter(book => {
           const tenSach = book.tenSach ? book.tenSach.toLowerCase() : ''
+          const maSach = book.maSach ? book.maSach.toLowerCase() : ''
           const tacGia = book.tacGia
             ? book.tacGia.trim().toLowerCase()
             : ''
-          const keyword = this.search.toLowerCase().trim()
+          const keyword = this.search.normalize("NFC").toLowerCase().trim();
 
-          const manxbValue = book.maNXB?.maNXB || ''
-          const nxb = this.nxbs.find(n => String(n._id) === String(manxbValue))
+          const manxbValue = book.maNXB || ''
+          const nxb = this.nxbs.find(n => String(n.maNXB) === String(manxbValue))
           const tenNXB = nxb ? nxb.tenNXB.toLowerCase() : ''
 
           return (
